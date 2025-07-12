@@ -2,7 +2,7 @@
   "version": 2,
   "functions": {
     "api/index.js": {
-      "runtime": "nodejs20.x"   // dit à Vercel : exécute ce fichier comme function Node 20
+      "runtime": "nodejs20.x"
     }
   },
   "routes": [
