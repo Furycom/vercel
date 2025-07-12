@@ -1,9 +1,7 @@
 {
   "name": "supabase-rest-proxy",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "api/index.js",
   "type": "module",
-  "engines": {
-    "node": "18.x"
-  }
+  "engines": { "node": ">=18" }
 }
