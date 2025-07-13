@@ -1,1 +1,1 @@
-export { default } from './technicien-memoire2';
+export { default } from './technicien-memoire';
