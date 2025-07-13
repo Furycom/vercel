@@ -1,9 +1,14 @@
 {
-  "version": 2,
-  "routes": [
+  "functions": {
+    "api/index.js": {
+      "memory": 128,
+      "maxDuration": 10
+    }
+  },
+  "rewrites": [
     {
-      "src": "^/(.*)$",
-      "dest": "api/index.js"
+      "source": "/technicien_memoire",
+      "destination": "/api/index.js"
     }
   ]
 }
