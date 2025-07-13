@@ -8,6 +8,8 @@ const supabase = createClient(
 export default async function handler(req, res) {
   try {
     if (req.method === 'GET') {
+      console.log("Requête reçue (GET) avec query :", req.query);
+
       const { technicien_id } = req.query;
       const id = technicien_id?.replace('eq.', '');
 
@@ -37,6 +39,7 @@ export default async function handler(req, res) {
 
     return res.status(405).json({ error: 'Méthode non autorisée' });
   } catch (err) {
+    console.error("Erreur serveur :", err);
     return res.status(500).json({ error: String(err) });
   }
 }
