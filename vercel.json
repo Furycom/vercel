@@ -2,7 +2,7 @@
   "version": 2,
   "functions": {
     "api/**/*.js": {
-      "runtime": "nodejs18.x"   // ou nodejs20.x si ton plan l’autorise
+      "runtime": "nodejs18.x"
     }
   },
   "routes": [
