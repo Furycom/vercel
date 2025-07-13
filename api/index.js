@@ -1,1 +1,1 @@
-export { default } from './technicien-memoire';
+export { default } from './technicien-memoire.js';
