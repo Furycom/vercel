@@ -1,9 +1,11 @@
 {
   "version": 2,
+  "functions": {
+    "api/**/*.js": {
+      "runtime": "nodejs18.x"   // ou nodejs20.x si ton plan l’autorise
+    }
+  },
   "routes": [
     { "src": "/(.*)", "dest": "/api/index.js" }
-  ],
-  "functions": {
-    "api/index.js": { "runtime": "nodejs20.x" }
-  }
+  ]
 }
