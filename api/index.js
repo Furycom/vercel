@@ -6,28 +6,37 @@ const supabase = createClient(
 );
 
 export default async function handler(req, res) {
-  if (req.method === 'POST') {
-    const { technicien_id, contenu } = req.body;
+  try {
+    if (req.method === 'GET') {
+      const { technicien_id } = req.query;
+      const id = technicien_id?.replace('eq.', '');
 
-    const { data, error } = await supabase
-      .from('technicien_memoire')
-      .insert([{ technicien_id, contenu }]);
+      if (!id) {
+        return res.status(400).json({ error: "technicien_id manquant ou malformé" });
+      }
 
-    if (error) return res.status(500).json({ error });
-    return res.status(201).json(data);
+      const { data, error } = await supabase
+        .from('technicien_memoire')
+        .select('*')
+        .eq('technicien_id', id);
+
+      if (error) return res.status(500).json({ error });
+      return res.status(200).json({ data });
+    }
+
+    if (req.method === 'POST') {
+      const { technicien_id, contenu } = req.body;
+
+      const { data, error } = await supabase
+        .from('technicien_memoire')
+        .insert([{ technicien_id, contenu }]);
+
+      if (error) return res.status(500).json({ error });
+      return res.status(201).json(data);
+    }
+
+    return res.status(405).json({ error: 'Méthode non autorisée' });
+  } catch (err) {
+    return res.status(500).json({ error: String(err) });
   }
-
-  if (req.method === 'GET') {
-    const { technicien_id } = req.query;
-
-    const { data, error } = await supabase
-      .from('technicien_memoire')
-      .select('*')
-      .eq('technicien_id', technicien_id.replace('eq.', ''));
-
-    if (error) return res.status(500).json({ error });
-    return res.status(200).json({ data });
-  }
-
-  return res.status(405).json({ error: 'Méthode non autorisée' });
 }
